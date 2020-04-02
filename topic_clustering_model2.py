@@ -172,7 +172,8 @@ class Topic_clustering(object):
         X_use = np.genfromtxt('data_USE.csv', delimiter=',')
         X_nnlm = np.genfromtxt('data_NNLM.csv', delimiter=',')
         X_gnew = np.genfromtxt('data_GNEW.csv', delimiter=',')
-        y = np.genfromtxt('data_y.csv', delimiter=',')
+        #y = np.genfromtxt('data_y.csv', delimiter=',')
+        y = self.y;
         print("training data loaded")
 
         # Split the data into development set and test set
