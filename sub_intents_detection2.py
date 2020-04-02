@@ -28,7 +28,7 @@ import json
 
 class Intent_classifiction(object):
     def __init__(self):
-        self.url_data = "https://github.com/google-research-datasets/Taskmaster/raw/master/TM-1-2019/self-dialogs.json"
+        self.url_data = "TM-1-2019/self-dialogs.json"
         self.data = requests.get(self.url_data).json()
         
         # Phrases to intents
