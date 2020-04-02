@@ -152,7 +152,7 @@ class Topic_clustering(object):
             X_gnew = np.array(self.gnews(self.X))
             np.savetxt("data_GNEW.csv", X_gnew, delimiter=",")
 
-        if not os.path.exists("data_USE.csv"):
+        if not os.path.exists("data_ELMo.csv"):
             X_elmo = []
             for i in range(len(self.X)):
                 X_elmo.append(np.array(self.ELMO([self.X[i]])['default']))
