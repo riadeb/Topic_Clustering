@@ -21,6 +21,7 @@ from keras import metrics
 from sklearn import preprocessing
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import f1_score
+import json
 
 import json
 
@@ -29,8 +30,9 @@ import json
 class Intent_classifiction(object):
     def __init__(self):
         self.url_data = "TM-1-2019/self-dialogs.json"
-        self.data = requests.get(self.url_data).json()
-        
+        #self.data = requests.get(self.url_data).json()
+        with open(self.url_data) as f:
+            self.data = json.load(f)
         # Phrases to intents
         self.phrs2intents = {}
         
