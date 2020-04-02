@@ -164,6 +164,9 @@ class Topic_clustering(object):
             X_nnlm = np.array(self.NNLM(self.X)['default'])
             np.savetxt("data_NNLM.csv", X_nnlm, delimiter=",")
 
+        if not os.path.exists("data_y.csv"):
+            np.savetxt("data_y.csv", self.y, delimiter=",")
+
         # Get data from csv
         X_elmo = np.genfromtxt('data_ELMo.csv', delimiter=',')
         X_use = np.genfromtxt('data_USE.csv', delimiter=',')
