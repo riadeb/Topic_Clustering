@@ -50,7 +50,7 @@ class Topic_clustering(object):
         self.embedding_models = []
 
         # hyper_parameter candidates:
-        self.loss = ['categorical_crossentropy', 'cosine_similarity', 'binary_crossentropy',
+        self.loss = ['categorical_crossentropy', 'cosine_proximity', 'binary_crossentropy',
                      'kullback_leibler_divergence','hinge']
         self.optimizer = ['adam', 'sgd']
 
