@@ -22,6 +22,7 @@ from keras import metrics
 from sklearn import preprocessing
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import f1_score
+import json
 
 class Topic_clustering(object):
 
