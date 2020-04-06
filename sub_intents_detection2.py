@@ -198,8 +198,8 @@ class Intent_detection(object):
                     num_neg += 1
         labeled_sample = len(y)
         for i in range(len(y) // 3):
-            p = self.topic2phrs_zoo['other'][np.random.randint(len( ID.topic2phrs_zoo['other'] ))]
-            X.append(p2v[p])
+            p = self.topic2phrs_zoo['other'][np.random.randint(len(self.topic2phrs_zoo['other']))]
+            X.append(self.p2v[p])
             y.append(0)
             num_other += 1;
         print("We get: ")
