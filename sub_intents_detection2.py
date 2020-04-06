@@ -81,14 +81,14 @@ class Intent_classifiction(object):
         self.intents_clustering()
         print("intents clustering completed!")
         if not os.path.exists("phr_embedded.json"):
-            self.phrs2vec = {}
-            
-            for i in range(len(self.X)):
-                if i % 1000 == 0:
-                    print("Embedding Progress: ", i / len(self.X))
-                self.phrs2vec[ self.X[i] ]  = str( list( np.array(self.ELMO([self.X[i]])['default'][0]) ))
             with open('phr_embedded.json', 'w') as fp:
-                json.dump(self.phrs2vec, fp)
+                self.phrs2vec = {}
+
+                for i in range(len(self.X)):
+                    if i % 1000 == 0:
+                        print("Embedding Progress: ", i / len(self.X))
+                    self.phrs2vec[ self.X[i] ]  = str( list( np.array(self.ELMO([self.X[i]])['default'][0]) ))
+                    json.dump(self.phrs2vec, fp)
                            
         with open('phr_embedded.json', 'r') as fp:
             self.phrs2vec = json.load(fp)
@@ -188,12 +188,12 @@ class Intent_detection(object):
                 break
             if self.phrs2sub_topic[t][p][  self.topic2sub_topic[t][st] - 1  ] > 0:
                 if num_pos >= -0:
-                    X.append( p2v[p] )
+                    X.append( self.p2v[p] )
                     y.append( 1 )
                     num_pos += 1
             else:
                 if num_neg <= num_pos // 2:
-                    X.append( p2v[p] )
+                    X.append( self.p2v[p] )
                     y.append( 0 )
                     num_neg += 1
         labeled_sample = len(y)
