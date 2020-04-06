@@ -26,8 +26,12 @@ from sklearn.metrics import f1_score
 class Topic_clustering(object):
 
     def __init__(self):
-        self.data = requests.get(
-            "https://github.com/google-research-datasets/Taskmaster/raw/master/TM-1-2019/self-dialogs.json").json()
+        self.url_data = "TM-1-2019/self-dialogs.json"
+        # self.data = requests.get(self.url_data).json()
+        with open(self.url_data) as f:
+            self.data = json.load(f)
+       # self.data = requests.get(
+          #  "https://github.com/google-research-datasets/Taskmaster/raw/master/TM-1-2019/self-dialogs.json").json()
         self.numofclasses = 7
 
         # data set loading
@@ -165,7 +169,7 @@ class Topic_clustering(object):
             np.savetxt("data_NNLM.csv", X_nnlm, delimiter=",")
 
         if not os.path.exists("data_y.csv"):
-            np.savetxt("data_y.csv", self.y, delimiter=",")
+            np.savetxt("data_y.csv", self.y, delimiter=",", fmt='%i')
 
         # Get data from csv
         X_elmo = np.genfromtxt('data_ELMo.csv', delimiter=',')
