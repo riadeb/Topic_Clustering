@@ -82,6 +82,7 @@ class Topic_clustering(object):
                          metrics=[metrics.mae, metrics.categorical_accuracy])
             if os.path.exists(self.trained_w_folder+"/topic_clustering/%s.h5" %em):
                 self.model_zoo[em].load_weights(self.trained_w_folder+"/topic_clustering/%s.h5" %em)
+                print("Loaded weights for model " + em)
 
     # Word Embedding Pretrained Models:
     def NNLM(self, x):

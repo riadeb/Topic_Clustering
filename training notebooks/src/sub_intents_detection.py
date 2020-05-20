@@ -273,6 +273,7 @@ class Intent_detection(object):
                         print()
                     else:
                         model.load_weights(self.trained_w_folder+"/%s/%s.h5" %(t,st))
+                        print("Loaded weights for model " + em)
                     self.model_zoo[t][st] = model
                 
     def ELMO(self, x):
