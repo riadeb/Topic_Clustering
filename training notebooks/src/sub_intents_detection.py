@@ -29,7 +29,7 @@ import json
 
 class Intent_classifiction(object):
     def __init__(self):
-        self.url_data = "TM-1-2019/self-dialogs.json"
+        self.url_data = "../TM-1-2019/self-dialogs.json"
         #self.data = requests.get(self.url_data).json()
         with open(self.url_data) as f:
             self.data = json.load(f)

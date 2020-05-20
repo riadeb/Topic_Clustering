@@ -27,12 +27,10 @@ import json
 class Topic_clustering(object):
 
     def __init__(self):
-        self.url_data = "TM-1-2019/self-dialogs.json"
+        self.url_data = "../TM-1-2019/self-dialogs.json"
         # self.data = requests.get(self.url_data).json()
         with open(self.url_data) as f:
             self.data = json.load(f)
-       # self.data = requests.get(
-          #  "https://github.com/google-research-datasets/Taskmaster/raw/master/TM-1-2019/self-dialogs.json").json()
         self.numofclasses = 7
 
         # data set loading
