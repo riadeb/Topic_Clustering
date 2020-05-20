@@ -115,9 +115,10 @@ class Intent_detection(object):
     ''' subtopic means: the small theme belonging to the topic, e.g. "restaurant.time" '''
     ''' intents means: the intent of the user, which kind of express the attitude of user, e.g. "restaurant.time.accept" '''
 
-    def __init__(self, p2i, p2v):
+    def __init__(self, p2i, p2v, trained_weights_folder = ".../trained weights/intent_detection"):
         self.p2i = p2i
         self.p2v = p2v
+        self.trained_w_folder = trained_weights_folder
         self.topic = ['auto', 'coffee', 'movie', 'pizza', 'restaurant', 'uber', 'other']
         self.phrs_zoo = np.array(list(p2i.keys()))
         self.topic2phrs_zoo = {'auto':[], 'coffee':[], 'movie':[], 'pizza':[], 'restaurant':[], 'uber':[], 'other':[]}
@@ -258,20 +259,20 @@ class Intent_detection(object):
                     model.add(tf.keras.layers.Dense(1, activation='relu'))
                     model.compile(loss='mean_squared_logarithmic_error', optimizer='adam', metrics=[metrics.mae, metrics.categorical_accuracy])
 
-                    if not os.path.exists("intent_detection_model/%s/%s.h5" %(t,st)):
+                    if not os.path.exists(self.trained_w_folder+"/%s/%s.h5" %(t,st)):
                         print("Now training the classsfier for topic: ", t, " ; intent: ", st)
                         print(64 * "=")
                         X, y = self.get_data(t, st)
                         print("data_loaded!")
                         X_train, X_dev, y_train, y_dev = self.my_train_test_split(X, y)
                         model.fit(X_train, y_train, epochs=3, batch_size=128)
-                        model.save_weights("intent_detection_model/%s/%s.h5" %(t,st))
+                        model.save_weights(self.trained_w_folder+"/%s/%s.h5" %(t,st))
                         print("f1_score on dev set: ")
                         self.f1_score_model(model, X_dev, y_dev)
                         print(64*"=")
                         print()
                     else:
-                        model.load_weights("intent_detection_model/%s/%s.h5" %(t,st))
+                        model.load_weights(self.trained_w_folder+"/%s/%s.h5" %(t,st))
                     self.model_zoo[t][st] = model
                 
     def ELMO(self, x):
