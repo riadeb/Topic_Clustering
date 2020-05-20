@@ -26,7 +26,7 @@ import json
 
 class Topic_clustering(object):
 
-    def __init__(self, trained_weigths_folder = ".../trained weigths"):
+    def __init__(self, trained_weigths_folder = "trained weigths/topic_clustering"):
         self.url_data = "../TM-1-2019/self-dialogs.json"
         self.trained_w_folder = trained_weigths_folder
         # self.data = requests.get(self.url_data).json()
@@ -81,7 +81,7 @@ class Topic_clustering(object):
             self.model_zoo[em].compile(loss=self.best_hyper_parameter[em][0], optimizer=self.best_hyper_parameter[em][1],
                          metrics=[metrics.mae, metrics.categorical_accuracy])
             if os.path.exists(self.trained_w_folder+"/topic_clustering/%s.h5" %em):
-                self.model_zoo[em].load_weights(self.trained_w_folder+"/topic_clustering/%s.h5" %em)
+                self.model_zoo[em].load_weights(self.trained_w_folder+"/%s.h5" %em)
                 print("Loaded weights for model " + em)
 
     # Word Embedding Pretrained Models:
@@ -299,7 +299,7 @@ class Topic_clustering(object):
             model.compile(loss=self.best_hyper_parameter[em][0], optimizer=self.best_hyper_parameter[em][1],
                           metrics=[metrics.mae, metrics.categorical_accuracy])
             model.fit(X_train, y_train, epochs=self.best_early_stop[em], batch_size=128)
-            model.save_weights(self.trained_w_folder+"/topic_clustering/%s.h5"%em)
+            model.save_weights(self.trained_w_folder+"/%s.h5"%em)
             f1_test[em] = self.f1_score_model(model, X_test, y_test)
         return f1_test
 

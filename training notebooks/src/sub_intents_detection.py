@@ -115,7 +115,7 @@ class Intent_detection(object):
     ''' subtopic means: the small theme belonging to the topic, e.g. "restaurant.time" '''
     ''' intents means: the intent of the user, which kind of express the attitude of user, e.g. "restaurant.time.accept" '''
 
-    def __init__(self, p2i, p2v, trained_weights_folder = ".../trained weights/intent_detection"):
+    def __init__(self, p2i, p2v, trained_weights_folder = "trained weights/intent_detection"):
         self.p2i = p2i
         self.p2v = p2v
         self.trained_w_folder = trained_weights_folder
@@ -238,7 +238,7 @@ class Intent_detection(object):
                         f1 = self.f1_score_model(model, X_dev, y_dev)[0]
                         if f1 > best_f1:
                             self.model_zoo[t][st] = model
-                            model.save_weights("intent_detection_model/%s/%s.h5" %(t,st))
+                            model.save_weights(self.trained_w_folder+"/%s/%s.h5" %(t,st))
                             self.best_epoch[t][st] = e
                             self.best_f1[t][st] = f1
                             best_f1 = f1
