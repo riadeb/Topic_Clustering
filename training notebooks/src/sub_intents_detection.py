@@ -115,7 +115,7 @@ class Intent_detection(object):
     ''' subtopic means: the small theme belonging to the topic, e.g. "restaurant.time" '''
     ''' intents means: the intent of the user, which kind of express the attitude of user, e.g. "restaurant.time.accept" '''
 
-    def __init__(self, p2i, p2v, trained_weights_folder = "trained weights/intent_detection"):
+    def __init__(self, p2i, p2v, trained_weights_folder = "./trained weights/intent_detection"):
         self.p2i = p2i
         self.p2v = p2v
         self.trained_w_folder = trained_weights_folder

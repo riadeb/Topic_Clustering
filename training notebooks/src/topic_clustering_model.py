@@ -26,7 +26,7 @@ import json
 
 class Topic_clustering(object):
 
-    def __init__(self, trained_weigths_folder = "trained weigths/topic_clustering"):
+    def __init__(self, trained_weigths_folder = "./trained weigths/topic_clustering"):
         self.url_data = "../TM-1-2019/self-dialogs.json"
         self.trained_w_folder = trained_weigths_folder
         # self.data = requests.get(self.url_data).json()
@@ -80,7 +80,7 @@ class Topic_clustering(object):
             self.model_zoo[em].add(tf.keras.layers.Dense(self.numofclasses, activation='softmax'))
             self.model_zoo[em].compile(loss=self.best_hyper_parameter[em][0], optimizer=self.best_hyper_parameter[em][1],
                          metrics=[metrics.mae, metrics.categorical_accuracy])
-            if os.path.exists(self.trained_w_folder+"/topic_clustering/%s.h5" %em):
+            if os.path.exists(self.trained_w_folder+"/%s.h5" %em):
                 self.model_zoo[em].load_weights(self.trained_w_folder+"/%s.h5" %em)
                 print("Loaded weights for model " + em)
 
