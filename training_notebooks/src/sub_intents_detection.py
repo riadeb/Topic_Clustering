@@ -115,12 +115,12 @@ class Intent_detection(object):
     ''' subtopic means: the small theme belonging to the topic, e.g. "restaurant.time" '''
     ''' intents means: the intent of the user, which kind of express the attitude of user, e.g. "restaurant.time.accept" '''
 
-    def __init__(self, p2i, p2v, trained_weights_folder = "./trained weights/intent_detection"):
+    def __init__(self, p2i=None, p2v=None, trained_weights_folder = "./trained weigths/intent_detection"):
         self.p2i = p2i
         self.p2v = p2v
         self.trained_w_folder = trained_weights_folder
         self.topic = ['auto', 'coffee', 'movie', 'pizza', 'restaurant', 'uber', 'other']
-        self.phrs_zoo = np.array(list(p2i.keys()))
+        self.phrs_zoo = np.array(list(p2i.keys())) if p2i!= None else []
         self.topic2phrs_zoo = {'auto':[], 'coffee':[], 'movie':[], 'pizza':[], 'restaurant':[], 'uber':[], 'other':[]}
         
         # Load word embedding model
@@ -273,7 +273,7 @@ class Intent_detection(object):
                         print()
                     else:
                         model.load_weights(self.trained_w_folder+"/%s/%s.h5" %(t,st))
-                        print("Loaded weights for model " + em)
+                        print("Loaded weights for model " + t + " : " + st)
                     self.model_zoo[t][st] = model
                 
     def ELMO(self, x):
