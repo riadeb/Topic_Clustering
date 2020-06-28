@@ -1,10 +1,12 @@
-# Topic Clustering withing chatbots
+# Topic Clustering within chatbots
 
 
 
 __version__ = "École Polytechnique, 2020/3/31"
 
 __data__ = "https://github.com/riadeb/Topic_Clustering"
+
+__author__ = ["Riade Benbaki", "Haolin Pan"]
 
 
 
